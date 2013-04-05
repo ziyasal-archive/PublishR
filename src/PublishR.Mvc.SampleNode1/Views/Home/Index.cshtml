@@ -1,0 +1,52 @@
+﻿@using PublishR
+@model PublishR.Mvc.SampleNode1.Models.HomePageModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h2>Sample Applicaiton Web Node A</h2>
+<input type="text" id="fireTxt" />
+<button id="fire">Fire</button>
+
+<ul id="messageList">
+</ul>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery.signalR-1.0.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var hub = $.connection.@Defaults.PublishrHubName;
+            $.extend(hub.client, {
+                logMessage: function (data) {
+                    console.log(data);
+                    $("#messageList").append("<li> logMessage => " + data.Message + " : " + data.ProductId + "</li>");
+                },
+                productUpdated: function (data) {
+                    console.log(data.data);
+                    $("#messageList").append("<li> productUpdated=> " + data.Message + " : " + data.ProductId + "</li>");
+                },
+                productDeleted: function (data) {
+                    console.log(data.data);
+                    $("#messageList").append("<li> productDeleted=> " + data.Message + " : " + data.ProductId + "</li>");
+                }
+            });
+
+            $.connection.hub.start()
+                .done(function () {
+                    console.log("Connected!");
+                })
+                .fail(function () {
+                    console.log("Could not Connect!");
+                });
+
+            $("#fire").click(function () {
+                $.post("@Url.Action("Fire")", { val: $("#fireTxt").val() });
+            });
+        });
+    </script>
+}
