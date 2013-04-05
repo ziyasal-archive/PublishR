@@ -14,12 +14,13 @@ namespace PublishR.Mvc.SampleNode2
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //Bootstrapper.Init();
+            Bootstrapper.Init();
         }
 
         void Session_Start(object sender, EventArgs e)
         {
-            Bootstrapper.Init();
+            //TODO: session id, session close unsubscribe.
+            //Bootstrapper.Init();
         }
     }
 }

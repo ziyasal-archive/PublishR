@@ -18,13 +18,13 @@ namespace PublishR.Mvc.SampleNode1.Handlers
 
         public void Handle(ProductUpdatedMessage message)
         {
-            CurrentHubContext.Clients.All.ProductUpdated(new { Message = "Prodcut Update handled in ProductHandler2.", message.ProductId });
+            CurrentHubContext.Clients.All.ProductUpdated(new { Message = "Product Update handled in ProductHandler2.", message.ProductId });
         }
 
         public void Handle(ProductDeletedMessage message)
         {
             IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<PublishrHub>();
-            hubContext.Clients.All.ProductDeleted(new { Message = "Prodcut delete handled in ProductHandler2.", message.ProductId });
+            hubContext.Clients.All.ProductDeleted(new { Message = "Product delete handled in ProductHandler2.", message.ProductId });
         }
     }
 }

@@ -8,7 +8,7 @@ namespace PublishR.Mvc.SampleNode2.Handlers
     {
         public void Handle(ProductUpdatedMessage message)
         {
-            CurrentHubContext.Clients.All.Invoke(message.HubMethod, new { Message = "Prodcut Updated.", message.ProductId });
+            CurrentHubContext.Clients.All.Invoke(message.HubMethod, new { Message = "Product Updated.", message.ProductId });
         }
     }
 }
