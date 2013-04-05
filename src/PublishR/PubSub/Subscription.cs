@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Web;
 using PublishR.Helper;
 using PublishR.Infrastructure;
 
@@ -15,8 +16,24 @@ namespace PublishR.PubSub
             HubMethod = hubMethod;
             ServiceMethod = serviceMethod;
 
-            SubId = StringEncoder.ConvertBase64String(string.Format("{0}_{1}_{2}_{3}", CallbackUrl, ServiceMethod, HubName, HubMethod));
+            InitsubId();
             Handles = new MethodScanner().GetGenericInterfaceArguments(handlerType); /*TODO: IoC> - DI*/
+        }
+
+        private void InitsubId()
+        {
+            string subId;
+
+            if (HttpContext.Current.Session != null && !string.IsNullOrWhiteSpace(HttpContext.Current.Session.SessionID))
+            {
+                subId = HttpContext.Current.Session.SessionID;
+            }
+            else
+            {
+                subId = string.Format("{0}_{1}_{2}_{3}", CallbackUrl, ServiceMethod, HubName, HubMethod);
+            }
+
+            SubId = StringEncoder.ConvertBase64String(subId);
         }
 
         public string CallbackUrl { get; private set; }
