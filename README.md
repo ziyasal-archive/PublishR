@@ -1,7 +1,7 @@
 PublishR
 ========
 
-Brings real time web support to soa architecture with SignalR.
+Bringing the real time web to soa apps with SignalR.
 
 _[Sample video available on vimeo]( https://vimeo.com/63431591 "Simple PublishR demo")_
 
