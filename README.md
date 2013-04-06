@@ -10,4 +10,4 @@ _[Sample video available on vimeo]( https://vimeo.com/63431591 "Simple PublishR 
 
 ##IMPORTANT :
 
-**At the moment, it has a few codes for core functionalty and maybe has some mistakes. **
+**At the moment, it has a few codes for core functionalty and maybe has some mistakes.**
