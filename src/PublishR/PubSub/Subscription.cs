@@ -17,7 +17,7 @@ namespace PublishR.PubSub
             ServiceMethod = serviceMethod;
 
             InitsubId();
-            Handles = new MethodScanner().GetGenericInterfaceArguments(handlerType); /*TODO: IoC> - DI*/
+            Handles = new Reflector().GetGenericInterfaceArguments(handlerType); /*TODO: IoC> - DI*/
         }
 
         private void InitsubId()

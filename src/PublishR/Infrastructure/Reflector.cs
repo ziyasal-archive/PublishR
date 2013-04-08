@@ -6,7 +6,7 @@ using PublishR.Messaging;
 
 namespace PublishR.Infrastructure
 {
-    public class MethodScanner : IMethodScanner
+    public class Reflector : IReflector
     {
         public MethodExecutionDefination GetTargetMethod(Type type, string handleType)
         {

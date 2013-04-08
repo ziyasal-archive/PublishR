@@ -8,12 +8,12 @@ namespace PublishR.NancyFx
 {
     public class PublishrModule : NancyModule
     {
-        readonly IMethodScanner _methodScanner;
+        readonly IReflector _reflector;
 
         public PublishrModule()
             : base("/publishr")
         {
-            _methodScanner = new MethodScanner();/*TODO : IoC*/
+            _reflector = new Reflector();/*TODO : IoC*/
             Post["/"] = p =>
             {
                 if (Request.Form.publishr.HasValue)
@@ -34,7 +34,7 @@ namespace PublishR.NancyFx
         private void Handle(IPublishrMessage message)
         {
             IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<PublishrHub>();
-            MethodExecutionDefination methodExecution = _methodScanner.GetTargetMethod(GetType(), message.HandleType);
+            MethodExecutionDefination methodExecution = _reflector.GetTargetMethod(GetType(), message.HandleType);
 
             if (methodExecution.Method != null)
             {

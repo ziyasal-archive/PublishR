@@ -8,14 +8,14 @@ namespace PublishR.Web.AspNet
     public abstract class PublishrHandler : PublishrHandlerBase, IHttpHandler
     {
         protected PublishrHandler()
-            : this(new MethodScanner())
+            : this(new Reflector())
         {
 
         }
 
-        protected PublishrHandler(IMethodScanner methodScanner)
+        protected PublishrHandler(IReflector reflector)
         {
-            MethodScanner = methodScanner;
+            Reflector = reflector;
         }
 
         public void ProcessRequest(HttpContext context)
