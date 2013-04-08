@@ -8,8 +8,8 @@ namespace PublishR
     public class Publishr
     {
         /*TODO: Improve Context management*/
-        static readonly Lazy<Publishr> LazyBusContext = new Lazy<Publishr>(() => new Publishr(), true);
-        public static Publishr Instance { get { return LazyBusContext.Value; } }
+        static readonly Lazy<Publishr> PublishrInstance = new Lazy<Publishr>(() => new Publishr(), true);
+        public static Publishr Instance { get { return PublishrInstance.Value; } }
         private readonly PublishrContext _publishrContext;
 
         public Publishr()

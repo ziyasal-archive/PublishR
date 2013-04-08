@@ -65,9 +65,9 @@
     <Compile Include="Context\IPublishrSubscriptionContext.cs" />
     <Compile Include="Helper\StringEncoder.cs" />
     <Compile Include="Hubs\PublishrHub.cs" />
-    <Compile Include="Infrastructure\IMethodScanner.cs" />
+    <Compile Include="Infrastructure\IReflector.cs" />
     <Compile Include="Infrastructure\MethodExecutionDefination.cs" />
-    <Compile Include="Infrastructure\MethodScanner.cs" />
+    <Compile Include="Infrastructure\Reflector.cs" />
     <Compile Include="MessageStore\DefaultMessageStore.cs" />
     <Compile Include="MessageStore\IMessageStore.cs" />
     <Compile Include="Messaging\PublishrMessage.cs" />

@@ -8,7 +8,7 @@ namespace PublishR.Wcf
 
         public PublishrService()
         {
-            Publishr = new Publishr();
+            Publishr = Publishr.Instance;
         }
 
         public void Subscribe(Subscription subscription)
