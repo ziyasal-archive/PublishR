@@ -6,6 +6,5 @@ namespace PublishR.Context
     {
         void Use<T>();
         void Subscribe(ISubscription subscription);
-        void Init();
     }
 }

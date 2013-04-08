@@ -8,5 +8,6 @@ namespace PublishR.Context
         bool UnSubscribe(ISubscription subscription);
         bool Exist(ISubscription subscription);
         void Publish(IPublishrMessage message, string currentMethodName);
+        void Init();
     }
 }
