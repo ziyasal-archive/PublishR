@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace PublishR.Infrastructure
+namespace PublishR.Reflection
 {
     public class MethodExecutionDefination
     {

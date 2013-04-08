@@ -1,6 +1,6 @@
 using Microsoft.AspNet.SignalR;
-using PublishR.Infrastructure;
 using PublishR.Messaging;
+using PublishR.Reflection;
 
 namespace PublishR.Handlers
 {

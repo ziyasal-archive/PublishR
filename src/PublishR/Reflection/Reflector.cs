@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using PublishR.Messaging;
 
-namespace PublishR.Infrastructure
+namespace PublishR.Reflection
 {
     public class Reflector : IReflector
     {

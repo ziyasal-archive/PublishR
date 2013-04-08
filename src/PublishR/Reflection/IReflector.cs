@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PublishR.Infrastructure
+namespace PublishR.Reflection
 {
     public interface IReflector
     {

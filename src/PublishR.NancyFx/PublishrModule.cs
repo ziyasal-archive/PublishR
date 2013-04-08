@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNet.SignalR;
 using Nancy;
 using PublishR.Hubs;
-using PublishR.Infrastructure;
 using PublishR.Messaging;
+using PublishR.Reflection;
 
 namespace PublishR.NancyFx
 {
