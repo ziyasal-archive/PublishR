@@ -10,37 +10,37 @@ namespace PublishR
         /*TODO: Improve Context management*/
         static readonly Lazy<Publishr> PublishrInstance = new Lazy<Publishr>(() => new Publishr(), true);
         public static Publishr Instance { get { return PublishrInstance.Value; } }
-        private readonly PublishrContext _publishrContext;
+        private readonly PubSubContext _pubSubContext;
 
         public Publishr()
         {
-            _publishrContext = new PublishrContext();
+            _pubSubContext = new PubSubContext();
         }
 
         public void Publish(IPublishrMessage message, string methodName)
         {
-            _publishrContext.Publish(message, methodName);
+            _pubSubContext.Publish(message, methodName);
         }
 
         public bool Exist(ISubscription subscription)
         {
-            return _publishrContext.Exist(subscription);
+            return _pubSubContext.Exist(subscription);
         }
 
         public void Configure(Action<IPublishrSubscriptionContext> initializer)
         {
-            initializer(_publishrContext);
-            _publishrContext.Init();
+            initializer(_pubSubContext);
+            _pubSubContext.Init();
         }
 
         public bool UnSubscribe(ISubscription subscription)
         {
-            return _publishrContext.UnSubscribe(subscription);
+            return _pubSubContext.UnSubscribe(subscription);
         }
 
         public void Subscribe(ISubscription subscription)
         {
-            _publishrContext.Subscribe(subscription);
+            _pubSubContext.Subscribe(subscription);
         }
     }
 }

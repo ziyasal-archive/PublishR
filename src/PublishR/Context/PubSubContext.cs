@@ -9,17 +9,18 @@ using RestSharp;
 
 namespace PublishR.Context
 {
-    public class PublishrContext : IPublishrContext, IPublishrSubscriptionContext
+    /*TODO: The management of task distribution of interfaces*/
+    public class PubSubContext : IPublishrContext, IPublishrSubscriptionContext
     {
         private readonly ILogger _logger;
         private readonly List<ISubscription> _subscriptions;
 
-        public PublishrContext()
+        public PubSubContext()
             : this(new NullLogger())
         {
 
         }
-        public PublishrContext(ILogger logger)
+        public PubSubContext(ILogger logger)
         {
             _logger = logger;
             _subscriptions = new List<ISubscription>();

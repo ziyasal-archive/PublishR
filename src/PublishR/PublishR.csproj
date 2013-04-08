@@ -60,7 +60,7 @@
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\NullLogger.cs" />
     <Compile Include="Publishr.cs" />
-    <Compile Include="Context\PublishrContext.cs" />
+    <Compile Include="Context\PubSubContext.cs" />
     <Compile Include="Context\IPublishrContext.cs" />
     <Compile Include="Context\IPublishrSubscriptionContext.cs" />
     <Compile Include="Helper\StringEncoder.cs" />
