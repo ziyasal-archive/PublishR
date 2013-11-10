@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Products</h1>
+	<ul id="products">
+	  <% products.forEach(function(product){ %>
+	    <li><%= product.name %></li>
+	  <% }) %>
+	</ul>
+  </body>
+</html>
