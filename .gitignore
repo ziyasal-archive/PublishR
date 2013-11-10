@@ -2,6 +2,7 @@
 [Bb]in/
 [Oo]bj/
 [Aa]pp_Data/
+[Aa]spnet_client/
 # Nuget Packages folder 
 [Pp]ackages/
 # BuildArtifacts folder

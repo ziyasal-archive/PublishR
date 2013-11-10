@@ -39,7 +39,7 @@
                 },
                 productDeleted: function (data) {
                     $("#messageList").append("<li>" + data.Message + " : " + data.ProductId + "</li>");
-                    $("#productsTable tr[data-id="+data.productId+"]").remove();
+                    $("#productsTable tr[data-id="+data.ProductId+"]").remove();
                 }, 
                 productUpdated: function (data) {
                     $("#messageList").append("<li>" + data.Message + " : " + data.ProductId + "</li>");
