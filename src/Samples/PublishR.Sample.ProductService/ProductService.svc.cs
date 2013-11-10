@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.ServiceModel;
 using PublishR.Sample.MessageLibrary;
 using PublishR.Sample.ProductService.Request;
@@ -41,8 +40,8 @@ namespace PublishR.Sample.ProductService {
         }
 
         public ProductDeletedResponse DeleteProduct(DeleteProductRequest request) {
-            _products.RemoveAll(product => product.Id == request.ProductTodeleteId);
-            Publishr.Publish(new ProductCreatedMessage { Message = "Product Deleted", ProductId = request.ProductTodeleteId });
+            _products.RemoveAll(product => product.Id == request.ProductTodeleteId);//For demo
+            Publishr.Publish(new ProductDeletedMessage{ Message = "Product Deleted", ProductId = request.ProductTodeleteId });
             return new ProductDeletedResponse {
                 Success = true
             };

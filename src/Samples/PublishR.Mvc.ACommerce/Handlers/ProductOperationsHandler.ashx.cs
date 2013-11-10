@@ -12,7 +12,7 @@ namespace PublishR.Mvc.ACommerce.Handlers
     {
         public void Handle(ProductCreatedMessage message)
         {
-            //Get hub eith hub name
+            //Get hub with hub name
             IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext(message.HubName);
             hubContext.Clients.All.productCreated(new { Message = "Product Create handled in ProductOperationsHandler.", message.ProductId });
         }

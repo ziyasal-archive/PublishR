@@ -2,29 +2,29 @@
 @model PublishR.Mvc.BCommerce.Models.HomePageModel
 
 @{
-    ViewBag.Title = "BCommerce App";
+    ViewBag.Title = "B Commerce App";
     Layout = "../Shared/_Layout.cshtml";
 }
-<h2>BCommerce App</h2>
+<h2>B Commerce App</h2>
 <table id="productsTable">
     <thead>
         <tr>
-            <td>Id</td>
-            <td>Name</td>
+            <td><strong>Product Name</strong></td>
+            <td></td>
         </tr>
     </thead>
     <tbody>
         @foreach (var product in Model.Products) {
             <tr data-row-id="@product.Id">
                 <td>@product.Name</td>
-                <td><a id="lnkDeleteProduct" data-id="@product.Id">Delete</a></td>
+                <td><a class="clsDeleteProduct" href="javascript:void(0)" data-id="@product.Id">Delete</a></td>
             </tr>
         }
     </tbody>
 </table>
 <br />
 <input type="text" id="fireTxt" />
-<a id="lnkCreateProduct">Create Sample Product</a>
+<a id="lnkCreateProduct" href="javascript:void(0)">Create Sample Product</a>
 <br />
 <strong>MESSAGES</strong>
 <ul id="messageList">
@@ -55,7 +55,7 @@
             $("#lnkCreateProduct").click(function () {
                 $.post("@Url.Action("CreateProduct")", { productName: $("#fireTxt").val() });
             }); 
-            $("#lnkDeleteProduct").click(function () {
+            $(".clsDeleteProduct").click(function () {
                 $.post("@Url.Action("DeleteProduct")", { productId: $(this).data("id")});
                 $(this).closest("tr").remove();
             });
