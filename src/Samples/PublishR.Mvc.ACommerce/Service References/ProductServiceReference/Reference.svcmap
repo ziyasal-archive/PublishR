@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e0188f4d-27cf-463b-882c-d78499bc31fb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="PublishR" />
+      <ReferencedAssembly AssemblyName="PublishR.Samples.MessageLibrary" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://service.publishr.com/ProductService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ProductService3.xsd" MetadataType="Schema" ID="1595fbe0-ef58-4d2c-a75b-52d806909994" SourceId="1" SourceUrl="http://service.publishr.com/ProductService.svc?xsd=xsd4" />
+    <MetadataFile FileName="ProductService2.xsd" MetadataType="Schema" ID="155b7c7a-285b-4a46-8359-333b1aa1f3b5" SourceId="1" SourceUrl="http://service.publishr.com/ProductService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ProductService21.xsd" MetadataType="Schema" ID="537099e0-5e0e-4a06-80e3-b1515f0e7814" SourceId="1" SourceUrl="http://service.publishr.com/ProductService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ProductService1.xsd" MetadataType="Schema" ID="0a23d34b-e0b8-41e4-bb57-d2e7af817e5b" SourceId="1" SourceUrl="http://service.publishr.com/ProductService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ProductService31.xsd" MetadataType="Schema" ID="6f3b30e7-60b5-4943-999e-c3a9b9e63351" SourceId="1" SourceUrl="http://service.publishr.com/ProductService.svc?xsd=xsd6" />
+    <MetadataFile FileName="ProductService.xsd" MetadataType="Schema" ID="1282d37a-06ba-4f1d-9d4f-59899c5499d7" SourceId="1" SourceUrl="http://service.publishr.com/ProductService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ProductService.wsdl" MetadataType="Wsdl" ID="6a8c191b-90c9-40c0-85ed-810c643d6181" SourceId="1" SourceUrl="http://service.publishr.com/ProductService.svc?wsdl" />
+    <MetadataFile FileName="ProductService32.xsd" MetadataType="Schema" ID="541c4f55-b969-40e1-947c-08d88d2d5db5" SourceId="1" SourceUrl="http://service.publishr.com/ProductService.svc?xsd=xsd5" />
+    <MetadataFile FileName="ProductService.disco" MetadataType="Disco" ID="93c62eb3-7e04-435b-9c2b-519b68a7c139" SourceId="1" SourceUrl="http://service.publishr.com/ProductService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

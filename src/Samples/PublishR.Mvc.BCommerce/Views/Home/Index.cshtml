@@ -1,0 +1,57 @@
+﻿@using PublishR
+@model PublishR.Mvc.BCommerce.Models.HomePageModel
+
+@{
+    ViewBag.Title = "BCommerce App";
+    Layout = "../Shared/_Layout.cshtml";
+}
+<h2>BCommerce App</h2>
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products) {
+
+        }
+    </tbody>
+</table>
+<br />
+<input type="text" id="fireTxt" />
+<button id="fire">Create Sample Product</button>
+<br />
+<strong>MESSAGES</strong>
+<ul id="messageList">
+</ul>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery.signalR-1.0.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var hub = $.connection.@Defaults.PublishrHubName;
+            $.extend(hub.client, {
+                logMessage: function (data) {
+                    $("#messageList").append("<li>" + data.Message + " : " + data.ProductId + "</li>");
+                }
+            });
+
+            $.connection.hub.start()
+                .done(function () {
+                    console.log("Connected!");
+                })
+                .fail(function () {
+                    console.log("Could not Connect!");
+                });
+
+            $("#fire").click(function () {
+                $.post("@Url.Action("CreateProduct")", { val: $("#fireTxt").val() });
+            });
+        });
+    </script>
+}

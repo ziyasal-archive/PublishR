@@ -1,0 +1,1 @@
+﻿<%@ WebHandler Language="C#" CodeBehind="ProductOperationsHandler.ashx.cs" Class="PublishR.Mvc.BCommerce.Handlers.ProductOperationsHandler" %>
