@@ -4,11 +4,10 @@ using PublishR.Web.AspNet;
 
 namespace PublishR.Mvc.BCommerce.Handlers
 {
-    public class ProductOperationsHandler : PublishrHandler, IHandle<ProductUpdatedMessage>
+    public class ProductOperationsHandler : PublishrHandler, IHandle<ProductCreatedMessage>
     {
-        public void Handle(ProductUpdatedMessage message)
-        {
-            CurrentHubContext.Clients.All.Invoke(message.HubMethod, new { Message = "Product Updated.", message.ProductId });
+        public void Handle(ProductCreatedMessage message) {
+            CurrentHubContext.Clients.All.Invoke(message.HubMethod, new { Message = "Product Created.", message.ProductId });
         }
     }
 }

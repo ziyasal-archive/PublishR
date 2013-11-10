@@ -14,8 +14,19 @@ namespace PublishR.Mvc.BCommerce.Controllers {
 
 
         [HttpPost]
-        public void CreateProduct(int val) {
+        public void CreateProduct(string productName) {
             ProductServiceClient client = new ProductServiceClient();
+            client.CreateProduct(new CreateProductRequest {
+                Name = productName
+            });
+        }
+
+        [HttpPost]
+        public void DeleteProduct(int productId) {
+            ProductServiceClient client = new ProductServiceClient();
+            client.DeleteProduct(new DeleteProductRequest {
+                ProductTodeleteId = productId
+            });
         }
     }
 }

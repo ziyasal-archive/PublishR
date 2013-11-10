@@ -14,20 +14,20 @@ namespace PublishR.Mvc.ACommerce.Handlers
         {
             //Get hub eith hub name
             IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext(message.HubName);
-            hubContext.Clients.All.Invoke(message.HubMethod, message);
+            hubContext.Clients.All.productCreated(new { Message = "Product Create handled in ProductOperationsHandler.", message.ProductId });
         }
 
         public void Handle(ProductUpdatedMessage message)
         {
             //Use current hub property
-            CurrentHubContext.Clients.All.ProductUpdated(new { Message = "Product Update handled in ProductOperationsHandler.", message.ProductId });
+            CurrentHubContext.Clients.All.productUpdated(new { Message = "Product Update handled in ProductOperationsHandler.", message.ProductId });
         }
 
         public void Handle(ProductDeletedMessage message)
         {
             //Get hub with hub type
             IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<PublishrHub>();
-            hubContext.Clients.All.ProductDeleted(new { Message = "Product delete handled in ProductOperationsHandler.", message.ProductId });
+            hubContext.Clients.All.productDeleted(new { Message = "Product delete handled in ProductOperationsHandler.", message.ProductId });
         }
     }
 }

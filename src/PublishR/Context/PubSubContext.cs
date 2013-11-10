@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using PublishR.Logging;
@@ -7,42 +6,32 @@ using PublishR.Messaging;
 using PublishR.PubSub;
 using RestSharp;
 
-namespace PublishR.Context
-{
-    /*TODO: The management of task distribution of interfaces*/
-    public class PubSubContext : IPublishrContext, IPublishrSubscriptionContext
-    {
+namespace PublishR.Context {
+    public class PubSubContext : IPublishrContext {
         private readonly ILogger _logger;
-        private readonly List<ISubscription> _subscriptions;
+        public PublishrConfiguration Configuration { get; set; }
 
         public PubSubContext()
-            : this(new NullLogger())
-        {
-
+            : this(new NullLogger()) {
+            Configuration=new PublishrConfiguration();
         }
-        public PubSubContext(ILogger logger)
-        {
+        public PubSubContext(ILogger logger) {
             _logger = logger;
-            _subscriptions = new List<ISubscription>();
         }
 
-        public bool UnSubscribe(ISubscription subscription)
-        {
-            return _subscriptions.Remove(subscription);
+        public bool UnSubscribe(ISubscription subscription) {
+            return Configuration.Subscriptions.Remove(subscription);
         }
 
-        public bool Exist(ISubscription subscription)
-        {
-            return _subscriptions.Exists(sub => sub.SubId == subscription.SubId);
+        public bool Exist(ISubscription subscription) {
+            return Configuration.Subscriptions.Exists(sub => sub.SubId == subscription.SubId);
         }
 
-        public void Publish(IPublishrMessage message, string currentMethodName)
-        {
+        public void Publish(IPublishrMessage message) {
             string handleType = message.GetType().FullName;
-            var filtered = _subscriptions.Where(subscription => subscription.ServiceMethod == currentMethodName && subscription.Handles.Contains(handleType));
+            var filtered = Configuration.Subscriptions.Where(subscription => subscription.Handles.Contains(handleType));
 
-            foreach (Subscription subscription in filtered)
-            {
+            foreach (Subscription subscription in filtered) {
                 message.HubName = subscription.HubName;
                 message.HubMethod = subscription.HubMethod;
 
@@ -51,47 +40,38 @@ namespace PublishR.Context
             }
         }
 
-        public void Subscribe(ISubscription subscription)
-        {
-            _subscriptions.Add(subscription);
-        }
-
-        public Type EndpointClientType { get; set; }
-
-        public void Use<T>()
-        {
-            EndpointClientType = typeof(T);
-        }
-
-        public void Init()
-        {
-            object instance = Activator.CreateInstance(EndpointClientType);
-            MethodInfo subscriber = instance.GetType().GetMethod("Subscribe");
+        public void Init() {
+            object instance = Activator.CreateInstance(Configuration.EndpointClientType);
             MethodInfo closer = instance.GetType().GetMethod("Close");
-            try
-            {
-                foreach (var subscription in _subscriptions)
-                {
-                    subscriber.Invoke(instance, new object[] { subscription });
+            try {
+                MethodInfo subscriber = Configuration.SendAllSubscriptionsOneCall
+                    ? instance.GetType().GetMethod("SubscribeAll")
+                    : instance.GetType().GetMethod("Subscribe");
+
+                if (Configuration.SendAllSubscriptionsOneCall) {
+                    subscriber.Invoke(instance, new object[] { Configuration.Subscriptions });
+                } else {
+                    foreach (var subscription in Configuration.Subscriptions) {
+                        subscriber.Invoke(instance, new object[] { subscription });
+                    }
                 }
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 _logger.Log(e, string.Empty);
-            }
-            finally
-            {
+            } finally {
                 closer.Invoke(instance, new object[] { });
             }
         }
 
-        private void PublishImpl(Subscription subscription, IPublishrMessage value)
-        {
+        private void PublishImpl(Subscription subscription, IPublishrMessage value) {
             var client = new RestClient(subscription.CallbackUrl);
             RestRequest request = new RestRequest(Method.POST);
             request.AddParameter("publishr", ServiceStack.Text.JsonSerializer.SerializeToString(value));
 
             client.Execute(request);
+        }
+
+        public void Subscribe(ISubscription subscription) {
+            Configuration.Subscriptions.Add(subscription);
         }
     }
 }

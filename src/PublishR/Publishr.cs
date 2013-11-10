@@ -7,9 +7,9 @@ namespace PublishR
 {
     public class Publishr
     {
-        /*TODO: Improve Context management*/
         static readonly Lazy<Publishr> PublishrInstance = new Lazy<Publishr>(() => new Publishr(), true);
         public static Publishr Instance { get { return PublishrInstance.Value; } }
+
         private readonly PubSubContext _pubSubContext;
 
         public Publishr()
@@ -17,9 +17,9 @@ namespace PublishR
             _pubSubContext = new PubSubContext();
         }
 
-        public void Publish(IPublishrMessage message, string methodName)
+        public void Publish(IPublishrMessage message)
         {
-            _pubSubContext.Publish(message, methodName);
+            _pubSubContext.Publish(message);
         }
 
         public bool Exist(ISubscription subscription)
@@ -27,9 +27,9 @@ namespace PublishR
             return _pubSubContext.Exist(subscription);
         }
 
-        public void Configure(Action<IPublishrSubscriptionContext> initializer)
+        public void Configure(Action<IPublishrConfiguration> initializer)
         {
-            initializer(_pubSubContext);
+            initializer(_pubSubContext.Configuration);
             _pubSubContext.Init();
         }
 
@@ -43,4 +43,6 @@ namespace PublishR
             _pubSubContext.Subscribe(subscription);
         }
     }
+
+    
 }

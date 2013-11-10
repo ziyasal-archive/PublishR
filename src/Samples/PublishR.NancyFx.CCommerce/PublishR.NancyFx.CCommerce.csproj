@@ -141,10 +141,9 @@
   <ItemGroup>
     <Compile Include="AppStart\PublishrBootstrapper.cs" />
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="CallServiceModule.cs" />
     <Compile Include="HomeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProductOperationsModule.cs" />
+    <Compile Include="ProductOperationsHandlerModule.cs" />
     <Compile Include="Service References\ProductServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -33,7 +33,7 @@ namespace PublishR.Sample.ProductService {
                 Id = _random.Next(10, 1000)
             };
             _products.Add(product);
-            Publishr.Publish(new ProductCreatedMessage { Message = "Product Created", ProductId = product.Id, ProductName = product.Name }, MethodBase.GetCurrentMethod().Name);
+            Publishr.Publish(new ProductCreatedMessage { Message = "Product Created", ProductId = product.Id, ProductName = product.Name });
 
             return new ProductCreatedResponse {
                 CreatedProductId = product.Id
@@ -42,7 +42,7 @@ namespace PublishR.Sample.ProductService {
 
         public ProductDeletedResponse DeleteProduct(DeleteProductRequest request) {
             _products.RemoveAll(product => product.Id == request.ProductTodeleteId);
-            Publishr.Publish(new ProductCreatedMessage { Message = "Product Deleted", ProductId = request.ProductTodeleteId }, MethodBase.GetCurrentMethod().Name);
+            Publishr.Publish(new ProductCreatedMessage { Message = "Product Deleted", ProductId = request.ProductTodeleteId });
             return new ProductDeletedResponse {
                 Success = true
             };

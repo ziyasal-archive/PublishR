@@ -6,7 +6,7 @@
     Layout = "../Shared/_Layout.cshtml";
 }
 <h2>BCommerce App</h2>
-<table>
+<table id="productsTable">
     <thead>
         <tr>
             <td>Id</td>
@@ -15,13 +15,16 @@
     </thead>
     <tbody>
         @foreach (var product in Model.Products) {
-
+            <tr data-row-id="@product.Id">
+                <td>@product.Name</td>
+                <td><a id="lnkDeleteProduct" data-id="@product.Id">Delete</a></td>
+            </tr>
         }
     </tbody>
 </table>
 <br />
 <input type="text" id="fireTxt" />
-<button id="fire">Create Sample Product</button>
+<a id="lnkCreateProduct">Create Sample Product</a>
 <br />
 <strong>MESSAGES</strong>
 <ul id="messageList">
@@ -34,7 +37,7 @@
 
     <script type="text/javascript">
         $(function () {
-            var hub = $.connection.@Defaults.PublishrHubName;
+            var hub = $.connection.@Defaults.PUBLISHR_HUB_NAME;
             $.extend(hub.client, {
                 logMessage: function (data) {
                     $("#messageList").append("<li>" + data.Message + " : " + data.ProductId + "</li>");
@@ -49,8 +52,12 @@
                     console.log("Could not Connect!");
                 });
 
-            $("#fire").click(function () {
-                $.post("@Url.Action("CreateProduct")", { val: $("#fireTxt").val() });
+            $("#lnkCreateProduct").click(function () {
+                $.post("@Url.Action("CreateProduct")", { productName: $("#fireTxt").val() });
+            }); 
+            $("#lnkDeleteProduct").click(function () {
+                $.post("@Url.Action("DeleteProduct")", { productId: $(this).data("id")});
+                $(this).closest("tr").remove();
             });
         });
     </script>

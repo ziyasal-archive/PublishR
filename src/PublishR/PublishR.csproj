@@ -54,6 +54,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\PublishrConfigurationContext.cs" />
     <Compile Include="Defaults.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Handlers\PublishrHandlerBase.cs" />
@@ -62,7 +63,7 @@
     <Compile Include="Publishr.cs" />
     <Compile Include="Context\PubSubContext.cs" />
     <Compile Include="Context\IPublishrContext.cs" />
-    <Compile Include="Context\IPublishrSubscriptionContext.cs" />
+    <Compile Include="Context\IPublishrConfiguration.cs" />
     <Compile Include="Helper\StringEncoder.cs" />
     <Compile Include="Hubs\PublishrHub.cs" />
     <Compile Include="Reflection\IReflector.cs" />

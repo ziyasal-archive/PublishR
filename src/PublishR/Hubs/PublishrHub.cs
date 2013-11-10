@@ -3,7 +3,7 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace PublishR.Hubs
 {
-    [HubName(Defaults.PublishrHubName)]
+    [HubName(Defaults.PUBLISHR_HUB_NAME)]
     public class PublishrHub : Hub
     {
 
