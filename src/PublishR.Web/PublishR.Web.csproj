@@ -53,9 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mvc\PublishrRouteHandler.cs" />
-    <Compile Include="Mvc\Routingextensions.cs" />
+    <Compile Include="Mvc\RoutingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AspNet\PublishrHandler.cs" />
+    <Compile Include="PublishrHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

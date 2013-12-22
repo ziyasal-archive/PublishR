@@ -4,7 +4,7 @@ using PublishR.Handlers;
 using PublishR.Messaging;
 using PublishR.Reflection;
 
-namespace PublishR.Web.AspNet {
+namespace PublishR.Web {
     public class PublishrHandler : PublishrHandlerBase, IHttpHandler {
         public RequestContext RequestContext { get; private set; }
 
