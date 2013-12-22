@@ -10,8 +10,7 @@ namespace PublishR.NancyFx
     {
         readonly IReflector _reflector;
 
-        public PublishrModule()
-            : base("/publishr")
+        public PublishrModule() : base("/publishr")
         {
             _reflector = new Reflector();/*TODO : IoC*/
             Post["/"] = p =>
