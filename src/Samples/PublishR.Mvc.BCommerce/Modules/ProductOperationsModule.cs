@@ -1,11 +1,10 @@
-﻿using PublishR.Messaging;
+﻿using PublishR.Handlers;
+using PublishR.Messaging;
 using PublishR.Sample.MessageLibrary;
-using PublishR.Web.AspNet;
 
-namespace PublishR.Mvc.BCommerce.Handlers
-{
-    public class ProductOperationsHandler : PublishrHandler, IHandle<ProductCreatedMessage>
-    {
+namespace PublishR.Mvc.BCommerce.Modules {
+    public class ProductOperationsModule : PublishrModule,
+        IHandle<ProductCreatedMessage> {
         public void Handle(ProductCreatedMessage message) {
             CurrentHubContext.Clients.All.Invoke(message.HubMethod, new { Message = "Product Created.", message.ProductId });
         }

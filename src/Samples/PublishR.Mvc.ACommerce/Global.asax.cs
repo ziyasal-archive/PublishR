@@ -14,13 +14,13 @@ namespace PublishR.Mvc.ACommerce
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Bootstrapper.Init();
+            PublishrBootstrapper.Init();
         }
 
         void Session_Start(object sender, EventArgs e)
         {
             //TODO: session id, session close unsubscribe.
-            //Bootstrapper.Init();
+            //PublishrBootstrapper.Init();
         }
     }
 }

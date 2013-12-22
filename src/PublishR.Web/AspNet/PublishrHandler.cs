@@ -1,39 +1,30 @@
 using System.Web;
+using System.Web.Routing;
 using PublishR.Handlers;
 using PublishR.Messaging;
 using PublishR.Reflection;
 
-namespace PublishR.Web.AspNet
-{
-    public abstract class PublishrHandler : PublishrHandlerBase, IHttpHandler
-    {
-        protected PublishrHandler()
-            : this(new Reflector())
-        {
+namespace PublishR.Web.AspNet {
+    public class PublishrHandler : PublishrHandlerBase, IHttpHandler {
+        public RequestContext RequestContext { get; private set; }
 
+        public PublishrHandler(IReflector reflector, RequestContext requestContext)
+            : base(reflector) {
+            RequestContext = requestContext;
         }
 
-        protected PublishrHandler(IReflector reflector)
-        {
-            Reflector = reflector;
-        }
-
-        public void ProcessRequest(HttpContext context)
-        {
+        public void ProcessRequest(HttpContext context) {
             string json = context.Request.Form.Get("publishr");
             var message = ServiceStack.Text.JsonSerializer.DeserializeFromString<PublishrMessage>(json);
             message.Raw = json;
 
-            if (Correlate())
-            {
+            if (Correlate()) {
                 Handle(message);
             }
         }
 
-        public virtual bool IsReusable
-        {
-            get
-            {
+        public virtual bool IsReusable {
+            get {
                 return true;
             }
         }

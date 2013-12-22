@@ -139,12 +139,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Handlers\ProductOperationsHandler.ashx.cs">
-      <DependentUpon>ProductOperationsHandler.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Handlers\OrderOperationsHandler.ashx.cs">
-      <DependentUpon>OrderOperationsHandler.ashx</DependentUpon>
-    </Compile>
+    <Compile Include="Modules\OrderOperationsModule.cs" />
+    <Compile Include="Modules\ProductOperationsModule.cs" />
     <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ProductServiceReference\Reference.cs">
@@ -156,8 +152,6 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Handlers\OrderOperationsHandler.ashx" />
-    <Content Include="Handlers\ProductOperationsHandler.ashx" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

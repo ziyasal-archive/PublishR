@@ -1,9 +1,9 @@
-﻿using PublishR.Messaging;
+﻿using PublishR.Handlers;
+using PublishR.Messaging;
 using PublishR.Sample.MessageLibrary;
-using PublishR.Web.AspNet;
 
-namespace PublishR.Mvc.ACommerce.Handlers {
-    public class OrderOperationsHandler : PublishrHandler,
+namespace PublishR.Mvc.ACommerce.Modules {
+    public class OrderOperationsModule : PublishrModule,
         IHandle<OrderCreatedMessage> {
         public void Handle(OrderCreatedMessage message) {
             CurrentHubContext.Clients.All.orderCreated(message);

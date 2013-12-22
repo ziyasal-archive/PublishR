@@ -6,5 +6,6 @@ namespace PublishR.Context {
         void Use<T>();
         List<ISubscription> Subscriptions { get; }
         bool SendAllSubscriptionsOneCall { set; }
+        void WithDomain(string endPointDomain);
     }
 }

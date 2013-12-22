@@ -7,8 +7,7 @@ using PublishR.Reflection;
 namespace PublishR.PubSub {
     [Serializable]
     public class Subscription : ISubscription {
-        public Subscription(string url, Type handlerType, string hubName, string hubMethod) {
-            CallbackUrl = url;
+        public Subscription(Type handlerType, string hubName, string hubMethod) {
             HubName = hubName;
             HubMethod = hubMethod;
 
@@ -16,12 +15,12 @@ namespace PublishR.PubSub {
             Handles = new Reflector().GetGenericInterfaceArguments(handlerType); /*TODO: IoC> - DI*/
         }
 
-        public Subscription(string url, Type handlerType, string hubName)
-            : this(url, handlerType, hubName, Defaults.PUBLISHR_HUB_METHOD) {
+        public Subscription( Type handlerType, string hubName)
+            : this(handlerType, hubName, Defaults.PUBLISHR_HUB_METHOD) {
         }
 
-        public Subscription(string url, Type handlerType)
-            : this(url, handlerType, Defaults.PUBLISHR_HUB_NAME, Defaults.PUBLISHR_HUB_METHOD) {
+        public Subscription(Type handlerType)
+            : this(handlerType, Defaults.PUBLISHR_HUB_NAME, Defaults.PUBLISHR_HUB_METHOD) {
         }
 
         /*TODO: Id generator*/

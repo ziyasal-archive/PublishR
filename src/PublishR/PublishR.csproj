@@ -56,7 +56,11 @@
   <ItemGroup>
     <Compile Include="Context\PublishrConfigurationContext.cs" />
     <Compile Include="Defaults.cs" />
+    <Compile Include="DI\DependencyResolveFailedException.cs" />
+    <Compile Include="DI\IInjectionContainer.cs" />
+    <Compile Include="DI\PoorCrowsDependencyContainer.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Handlers\PublishrModule.cs" />
     <Compile Include="Handlers\PublishrHandlerBase.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\NullLogger.cs" />

@@ -7,5 +7,6 @@ namespace PublishR.Reflection
     {
         MethodExecutionDefination GetTargetMethod(Type type, string handleType);
         List<string> GetGenericInterfaceArguments(Type handlerType);
+        MethodExecutionDefination FindByMessageType(string handleType);
     }
 }

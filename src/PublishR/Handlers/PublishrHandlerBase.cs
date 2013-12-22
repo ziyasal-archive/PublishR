@@ -6,13 +6,20 @@ namespace PublishR.Handlers
 {
     public abstract class PublishrHandlerBase
     {
-        protected IReflector Reflector { get; set; }
+        private readonly IReflector _reflector;
+
+        protected PublishrHandlerBase(IReflector reflector) {
+            _reflector = reflector;
+        }
+
         protected IHubContext CurrentHubContext { get; private set; }
 
         protected virtual void Handle(IPublishrMessage message)
         {
             CurrentHubContext = GlobalHost.ConnectionManager.GetHubContext(message.HubName);
-            MethodExecutionDefination methodExecution = Reflector.GetTargetMethod(GetType(), message.HandleType);
+            MethodExecutionDefination methodExecution = _reflector.FindByMessageType(message.HandleType);
+
+            //MethodExecutionDefination methodExecution = _reflector.GetTargetMethod(GetType(), message.HandleType);
             if (methodExecution.Method != null)
             {
                 object messageObj = ServiceStack.Text.JsonSerializer.DeserializeFromString(message.Raw, methodExecution.ParameterType);

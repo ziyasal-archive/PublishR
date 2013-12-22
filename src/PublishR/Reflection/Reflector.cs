@@ -4,22 +4,17 @@ using System.Linq;
 using System.Reflection;
 using PublishR.Messaging;
 
-namespace PublishR.Reflection
-{
-    public class Reflector : IReflector
-    {
-        public MethodExecutionDefination GetTargetMethod(Type type, string handleType)
-        {
+namespace PublishR.Reflection {
+    public class Reflector : IReflector {
+        public MethodExecutionDefination GetTargetMethod(Type type, string handleType) {
             MethodExecutionDefination result = new MethodExecutionDefination();
             MethodInfo[] methodInfos = type.GetMethods();
-            foreach (MethodInfo methodInfo in methodInfos)
-            {
+            foreach (MethodInfo methodInfo in methodInfos) {
                 ParameterInfo[] parameterInfos = methodInfo.GetParameters();
                 ParameterInfo firstOrDefault = parameterInfos.FirstOrDefault(parameterInfo => parameterInfo.ParameterType.FullName == handleType);
 
 
-                if (firstOrDefault != null)
-                {
+                if (firstOrDefault != null) {
                     result.Method = methodInfo;
                     result.ParameterType = firstOrDefault.ParameterType;
                     break;
@@ -29,23 +24,24 @@ namespace PublishR.Reflection
             return result;
         }
 
-        public List<string> GetGenericInterfaceArguments(Type handlerType)
-        {
+        public List<string> GetGenericInterfaceArguments(Type handlerType) {
             List<string> result = new List<string>();
-            if (handlerType != null)
-            {
+            if (handlerType != null) {
                 IEnumerable<Type> handleInterfaces = handlerType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IHandle<>));
-                foreach (Type handle in handleInterfaces)
-                {
+                foreach (Type handle in handleInterfaces) {
                     Type type = handle.GenericTypeArguments.FirstOrDefault();
-                    if (type != null)
-                    {
+                    if (type != null) {
                         result.Add(type.FullName);
                     }
                 }
             }
 
             return result;
+        }
+
+        public MethodExecutionDefination FindByMessageType(string handleType) {
+            //TODO:
+            return new MethodExecutionDefination();
         }
     }
 }
