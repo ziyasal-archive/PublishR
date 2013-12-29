@@ -57,6 +57,7 @@ namespace PublishR.Context
         {
             object instance = Activator.CreateInstance(Configuration.EndpointClientType);
             MethodInfo closer = instance.GetType().GetMethod("Close");
+            Configuration.Subscriptions.ForEach(item => item.CallbackUrl = Configuration.EndPointDomain);
             try
             {
                 MethodInfo subscriber = Configuration.SendAllSubscriptionsOneCall
@@ -65,13 +66,13 @@ namespace PublishR.Context
 
                 if (Configuration.SendAllSubscriptionsOneCall)
                 {
-                    subscriber.Invoke(instance, new object[] {Configuration.Subscriptions});
+                    subscriber.Invoke(instance, new object[] { Configuration.Subscriptions });
                 }
                 else
                 {
                     foreach (ISubscription subscription in Configuration.Subscriptions)
                     {
-                        subscriber.Invoke(instance, new object[] {subscription});
+                        subscriber.Invoke(instance, new object[] { subscription });
                     }
                 }
             }
@@ -81,13 +82,13 @@ namespace PublishR.Context
             }
             finally
             {
-                closer.Invoke(instance, new object[] {});
+                closer.Invoke(instance, new object[] { });
             }
         }
 
         private void PublishImpl(Subscription subscription, IPublishrMessage value)
         {
-            var client = new RestClient(subscription.CallbackUrl);
+            var client = new RestClient(string.Format("{0}/publishr", subscription.CallbackUrl));
             var request = new RestRequest(Method.POST);
             request.AddParameter("publishr", JsonSerializer.SerializeToString(value));
 

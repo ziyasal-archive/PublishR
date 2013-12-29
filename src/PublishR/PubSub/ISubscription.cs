@@ -4,7 +4,7 @@ namespace PublishR.PubSub
 {
     public interface ISubscription
     {
-        string CallbackUrl { get; }
+        string CallbackUrl { get; set; }
         string SubId { get; }
         string HubName { get; }
         string HubMethod { get; }

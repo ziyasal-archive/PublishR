@@ -13,40 +13,21 @@ namespace PublishR.PubSub
         {
             HubName = hubName;
             HubMethod = hubMethod;
-
-            InitsubId();
-            Handles = new Reflector().GetGenericInterfaceArguments(handlerType); /*TODO: IoC> - DI*/
+            SubId = IdGenerator.GenerateFrom(CallbackUrl, ServiceMethod, HubName, HubMethod);
+            Handles = new Reflector().GetGenericInterfaceArguments(handlerType); /*TODO: DI*/
         }
 
         public Subscription(Type handlerType, string hubName)
-            : this(handlerType, hubName, Defaults.PUBLISHR_HUB_METHOD) {}
+            : this(handlerType, hubName, Defaults.PUBLISHR_HUB_METHOD) { }
 
         public Subscription(Type handlerType)
-            : this(handlerType, Defaults.PUBLISHR_HUB_NAME, Defaults.PUBLISHR_HUB_METHOD) {}
+            : this(handlerType, Defaults.PUBLISHR_HUB_NAME, Defaults.PUBLISHR_HUB_METHOD) { }
 
-        /*TODO: Id generator*/
-
-        public string CallbackUrl { get; private set; }
+        public string CallbackUrl { get; set; }
         public string SubId { get; private set; }
         public string HubName { get; private set; }
         public string HubMethod { get; private set; }
         public string ServiceMethod { get; set; }
         public List<string> Handles { get; private set; }
-
-        private void InitsubId()
-        {
-            string subId;
-
-            if (HttpContext.Current.Session != null && !string.IsNullOrWhiteSpace(HttpContext.Current.Session.SessionID))
-            {
-                subId = HttpContext.Current.Session.SessionID;
-            }
-            else
-            {
-                subId = string.Format("{0}_{1}_{2}_{3}", CallbackUrl, ServiceMethod, HubName, HubMethod);
-            }
-
-            SubId = StringEncoder.ConvertBase64String(subId);
-        }
     }
 }
