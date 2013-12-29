@@ -59,6 +59,7 @@
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Handlers\PublishrModule.cs" />
     <Compile Include="Handlers\PublishrHandlerBase.cs" />
+    <Compile Include="Helper\IdGenerator.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\NullLogger.cs" />
     <Compile Include="Publishr.cs" />
