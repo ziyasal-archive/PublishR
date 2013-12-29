@@ -10,8 +10,9 @@ namespace PublishR.Extensions
         public static string GetHubName(this Type hubType)
         {
             string result = string.Empty;
-            List<HubNameAttribute> attributes = hubType.GetCustomAttributes(typeof(HubNameAttribute), true).Cast<HubNameAttribute>().ToList();
-            
+            List<HubNameAttribute> attributes =
+                hubType.GetCustomAttributes(typeof (HubNameAttribute), true).Cast<HubNameAttribute>().ToList();
+
             if (attributes.Count > 0)
             {
                 HubNameAttribute hubNameAttribute = attributes.FirstOrDefault();

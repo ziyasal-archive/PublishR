@@ -2,19 +2,24 @@ using System;
 using PublishR.Context;
 using PublishR.Messaging;
 using PublishR.PubSub;
+using PublishR.Registry;
 
 namespace PublishR
 {
     public class Publishr
     {
-        static readonly Lazy<Publishr> PublishrInstance = new Lazy<Publishr>(() => new Publishr(), true);
-        public static Publishr Instance { get { return PublishrInstance.Value; } }
+        private static readonly Lazy<Publishr> PublishrInstance = new Lazy<Publishr>(() => new Publishr(), true);
 
         private readonly PubSubContext _pubSubContext;
 
         public Publishr()
         {
             _pubSubContext = new PubSubContext();
+        }
+
+        public static Publishr Instance
+        {
+            get { return PublishrInstance.Value; }
         }
 
         public void Publish(IPublishrMessage message)
@@ -30,7 +35,10 @@ namespace PublishR
         public void Configure(Action<IPublishrConfiguration> initializer)
         {
             initializer(_pubSubContext.Configuration);
+
             _pubSubContext.Init();
+
+            GlobalRegistry.Instance.RegisterModules();
         }
 
         public bool UnSubscribe(ISubscription subscription)
@@ -43,6 +51,4 @@ namespace PublishR
             _pubSubContext.Subscribe(subscription);
         }
     }
-
-    
 }

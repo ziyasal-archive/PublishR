@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace PublishR.Reflection
@@ -7,6 +8,6 @@ namespace PublishR.Reflection
     {
         MethodExecutionDefination GetTargetMethod(Type type, string handleType);
         List<string> GetGenericInterfaceArguments(Type handlerType);
-        MethodExecutionDefination FindByMessageType(string handleType);
+        ConcurrentDictionary<Type, IEnumerable<Type>> GetModuleAndHandles();
     }
 }

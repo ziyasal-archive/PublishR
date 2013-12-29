@@ -1,15 +1,19 @@
+using System.Collections.Generic;
 using Microsoft.AspNet.SignalR;
 using PublishR.Messaging;
 using PublishR.Reflection;
+using PublishR.Registry;
+using ServiceStack.Text;
 
 namespace PublishR.Handlers
 {
     public abstract class PublishrHandlerBase
     {
-        private readonly IReflector _reflector;
+        private readonly IGlobalRegistry _globalRegistry;
 
-        protected PublishrHandlerBase(IReflector reflector) {
-            _reflector = reflector;
+        protected PublishrHandlerBase(IGlobalRegistry globalRegistry)
+        {
+            _globalRegistry = globalRegistry;
         }
 
         protected IHubContext CurrentHubContext { get; private set; }
@@ -17,17 +21,22 @@ namespace PublishR.Handlers
         protected virtual void Handle(IPublishrMessage message)
         {
             CurrentHubContext = GlobalHost.ConnectionManager.GetHubContext(message.HubName);
-            MethodExecutionDefination methodExecution = _reflector.FindByMessageType(message.HandleType);
 
-            //MethodExecutionDefination methodExecution = _reflector.GetTargetMethod(GetType(), message.HandleType);
-            if (methodExecution.Method != null)
+            IEnumerable<MethodExecutionDefination> methodExecutionDefinations =
+                _globalRegistry.FindByMessageType(message.HandleType);
+
+
+            foreach (MethodExecutionDefination methodExecution in methodExecutionDefinations)
             {
-                object messageObj = ServiceStack.Text.JsonSerializer.DeserializeFromString(message.Raw, methodExecution.ParameterType);
-                methodExecution.Method.Invoke(this, new[] { messageObj });
-            }
-            else
-            {
-                CurrentHubContext.Clients.All.Invoke(message.HubMethod, new { data = message.Raw });
+                if (methodExecution.Method != null)
+                {
+                    object messageObj = JsonSerializer.DeserializeFromString(message.Raw, methodExecution.ParameterType);
+                    methodExecution.Method.Invoke(this, new[] {messageObj});
+                }
+                else
+                {
+                    CurrentHubContext.Clients.All.Invoke(message.HubMethod, new {data = message.Raw});
+                }
             }
         }
 

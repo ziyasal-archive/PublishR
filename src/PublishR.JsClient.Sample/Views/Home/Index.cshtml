@@ -1,0 +1,17 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "PublishR Js Api Very simple Demo";
+}
+
+@section scripts
+{
+    <script src="~/Scripts/jquery.signalR-2.0.1.js"></script>
+    <script src="~/Scripts/app/app.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var bootstrapper = new publishrR.Bootsrapper({});
+            bootstrapper.start({ url: 'publishr server api url here..' });
+        });
+    </script>
+}

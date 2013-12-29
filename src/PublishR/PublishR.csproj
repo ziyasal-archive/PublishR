@@ -56,9 +56,6 @@
   <ItemGroup>
     <Compile Include="Context\PublishrConfigurationContext.cs" />
     <Compile Include="Defaults.cs" />
-    <Compile Include="DI\DependencyResolveFailedException.cs" />
-    <Compile Include="DI\IInjectionContainer.cs" />
-    <Compile Include="DI\PoorCrowsDependencyContainer.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Handlers\PublishrModule.cs" />
     <Compile Include="Handlers\PublishrHandlerBase.cs" />
@@ -81,6 +78,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PubSub\ISubscription.cs" />
     <Compile Include="PubSub\Subscription.cs" />
+    <Compile Include="Registry\GlobalRegistry.cs" />
+    <Compile Include="Registry\IGlobalRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
