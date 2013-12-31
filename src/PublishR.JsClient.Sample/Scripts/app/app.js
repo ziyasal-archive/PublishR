@@ -1,6 +1,6 @@
-﻿var publishrR = (function ($p) {
+﻿var publishR = (function ($p) {
     "use strict";
-    var bootsrapper = function (config) {
+    var bootstrapper = function (config) {
 
         var initHub;
         initHub = function ($options) {
@@ -22,6 +22,6 @@
             }
         };
     };
-    $p.Bootsrapper = bootsrapper;
+    $p.Bootsrapper = bootstrapper;
     return $p;
-}(publishrR || (publishrR = {})));
+}(publishR || (publishR = {})));
