@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace PublishR.Reflection
 {
@@ -8,6 +9,6 @@ namespace PublishR.Reflection
     {
         MethodExecutionDefination GetTargetMethod(Type type, string handleType);
         List<string> GetGenericInterfaceArguments(Type handlerType);
-        ConcurrentDictionary<Type, IEnumerable<Type>> GetModuleAndHandles();
+        ConcurrentDictionary<Type, IEnumerable<string>> GetModuleAndHandles(Assembly assemblyToScan);
     }
 }

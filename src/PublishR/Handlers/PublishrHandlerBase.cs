@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Microsoft.AspNet.SignalR;
 using PublishR.Messaging;
 using PublishR.Reflection;
@@ -31,11 +33,15 @@ namespace PublishR.Handlers
                 if (methodExecution.Method != null)
                 {
                     object messageObj = JsonSerializer.DeserializeFromString(message.Raw, methodExecution.ParameterType);
-                    methodExecution.Method.Invoke(this, new[] {messageObj});
+
+                    PublishrModule moduleInstance = (PublishrModule)Activator.CreateInstance(methodExecution.OwnerType);
+                    moduleInstance.CurrentHubContext = CurrentHubContext;
+
+                    methodExecution.Method.Invoke(moduleInstance, new[] { messageObj });
                 }
                 else
                 {
-                    CurrentHubContext.Clients.All.Invoke(message.HubMethod, new {data = message.Raw});
+                    CurrentHubContext.Clients.All.Invoke(message.HubMethod, new { data = message.Raw });
                 }
             }
         }

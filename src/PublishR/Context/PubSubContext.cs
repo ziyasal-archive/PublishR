@@ -88,9 +88,9 @@ namespace PublishR.Context
 
         private void PublishImpl(Subscription subscription, IPublishrMessage value)
         {
-            var client = new RestClient(string.Format("{0}/publishr", subscription.CallbackUrl));
-            var request = new RestRequest(Method.POST);
-            request.AddParameter("publishr", JsonSerializer.SerializeToString(value));
+            var client = new RestClient(subscription.CallbackUrl.TrimEnd('/') + "/publishr/connect");
+            var request = new RestRequest(Method.GET) { RequestFormat = DataFormat.Json };
+            request.AddParameter("_", JsonSerializer.SerializeToString(value));
 
             client.Execute(request);
         }

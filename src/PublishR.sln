@@ -48,7 +48,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{5875F8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishR.Client", "PublishR.Client\PublishR.Client.csproj", "{6184E4B4-BF4E-461F-A52E-90D544E754E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishR.JsClient.Sample", "PublishR.JsClient.Sample\PublishR.JsClient.Sample.csproj", "{659C4969-9E31-45C3-8520-AEED997D6C49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishR.JsClient.Sample", "Samples\PublishR.JsClient.Sample\PublishR.JsClient.Sample.csproj", "{659C4969-9E31-45C3-8520-AEED997D6C49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

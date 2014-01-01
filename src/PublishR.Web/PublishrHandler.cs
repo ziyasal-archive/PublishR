@@ -18,13 +18,16 @@ namespace PublishR.Web
 
         public void ProcessRequest(HttpContext context)
         {
-            string json = context.Request.Form.Get("publishr");
-            var message = ServiceStack.Text.JsonSerializer.DeserializeFromString<PublishrMessage>(json);
-            message.Raw = json;
-
-            if (Correlate())
+            if (context.Request.QueryString.Get("_") != null)
             {
-                Handle(message);
+                string json = context.Request.QueryString.Get("_");
+                var message = ServiceStack.Text.JsonSerializer.DeserializeFromString<PublishrMessage>(json);
+                message.Raw = json;
+
+                if (Correlate())
+                {
+                    Handle(message);
+                }
             }
         }
 

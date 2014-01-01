@@ -7,5 +7,6 @@ namespace PublishR.Reflection
     {
         public MethodInfo Method { get; set; }
         public Type ParameterType { get; set; }
+        public Type OwnerType { get; set; }
     }
 }

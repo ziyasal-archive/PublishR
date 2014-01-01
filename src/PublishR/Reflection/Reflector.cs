@@ -13,6 +13,7 @@ namespace PublishR.Reflection
         public MethodExecutionDefination GetTargetMethod(Type type, string handleType)
         {
             var result = new MethodExecutionDefination();
+            result.OwnerType = type;
             MethodInfo[] methodInfos = type.GetMethods();
             foreach (MethodInfo methodInfo in methodInfos)
             {
@@ -39,7 +40,7 @@ namespace PublishR.Reflection
             {
                 IEnumerable<Type> handleInterfaces =
                     handlerType.GetInterfaces()
-                        .Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof (IHandle<>));
+                        .Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IHandle<>));
                 foreach (Type handle in handleInterfaces)
                 {
                     Type type = handle.GenericTypeArguments.FirstOrDefault();
@@ -53,33 +54,26 @@ namespace PublishR.Reflection
             return result;
         }
 
-        public ConcurrentDictionary<Type, IEnumerable<Type>> GetModuleAndHandles()
+        public ConcurrentDictionary<Type, IEnumerable<string>> GetModuleAndHandles(Assembly assemblyToScan)
         {
-            var result = new ConcurrentDictionary<Type, IEnumerable<Type>>();
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-
-            foreach (Assembly assembly in assemblies)
+            var result = new ConcurrentDictionary<Type, IEnumerable<string>>();
+            List<Type> moduleTypes = new List<Type>();
+            foreach (Type type in assemblyToScan.GetTypes())
             {
-                IEnumerable<Type> moduleTypes =
-                    assembly.GetTypes().Where(item => item.IsAssignableFrom(typeof (PublishrModule)));
-
-                foreach (Type moduleType in moduleTypes)
+                if (typeof(PublishrModule).IsAssignableFrom(type))
                 {
-                    result.TryAdd(moduleType, GetHandles(moduleType));
+                    moduleTypes.Add(type);
                 }
             }
-            return result;
-        }
 
-        private IEnumerable<Type> GetHandles(Type handlerType)
-        {
-            IEnumerable<Type> result = new List<Type>();
-
-            if (handlerType != null)
+            foreach (Type moduleType in moduleTypes)
             {
-                result =
-                    handlerType.GetInterfaces()
-                        .Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof (IHandle<>));
+                IEnumerable<string> handles = GetGenericInterfaceArguments(moduleType);
+
+                if (handles.Any())
+                {
+                    result.TryAdd(moduleType, handles);
+                }
             }
 
             return result;

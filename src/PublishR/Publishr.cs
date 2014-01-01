@@ -38,7 +38,7 @@ namespace PublishR
 
             _pubSubContext.Init();
 
-            GlobalRegistry.Instance.RegisterModules();
+            GlobalRegistry.Instance.RegisterModules(_pubSubContext.Configuration.AssemblyToScan);
         }
 
         public bool UnSubscribe(ISubscription subscription)

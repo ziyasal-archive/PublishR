@@ -6,7 +6,7 @@ namespace PublishR.Web.Mvc
     {
         public static void MapPublishR(this RouteCollection routes)
         {
-            routes.Add(new Route("publishr", new PublishrRouteHandler()));
+            routes.Add(new Route("publishr/{message}", new PublishrRouteHandler()));
         }
     }
 }

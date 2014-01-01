@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using PublishR.Web.Mvc;
 
 namespace PublishR.Mvc.ACommerce.App_Start
 {
@@ -8,7 +9,7 @@ namespace PublishR.Mvc.ACommerce.App_Start
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            RouteTable.Routes.MapPublishR();
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

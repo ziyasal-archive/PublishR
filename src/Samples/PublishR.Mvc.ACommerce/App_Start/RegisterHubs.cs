@@ -12,8 +12,6 @@ namespace PublishR.Mvc.ACommerce.App_Start
         {
             // Register the default hubs route: ~/signalr/hubs
             RouteTable.Routes.MapHubs();
-            RouteTable.Routes.MapPublishR();
-
         }
     }
 }
