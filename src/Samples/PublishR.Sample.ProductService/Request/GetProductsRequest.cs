@@ -1,4 +1,6 @@
-﻿namespace PublishR.Sample.ProductService.Request {
-    public class GetProductsRequest {
+﻿namespace PublishR.Sample.ProductService.Request
+{
+    public class GetProductsRequest
+    {
     }
 }

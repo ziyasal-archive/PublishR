@@ -22,6 +22,6 @@
             }
         };
     };
-    $p.Bootsrapper = bootstrapper;
+    $p.Bootstrapper = bootstrapper;
     return $p;
 }(publishR || (publishR = {})));

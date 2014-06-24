@@ -1,9 +1,9 @@
 using System.Web;
 using System.Web.Routing;
-using PublishR.Mvc.BCommerce.App_Start;
+using PublishR.Mvc.BCommerce;
 
 [assembly: PreApplicationStartMethod(typeof(RegisterHubs), "Start")]
-namespace PublishR.Mvc.BCommerce.App_Start
+namespace PublishR.Mvc.BCommerce
 {
     public static class RegisterHubs
     {

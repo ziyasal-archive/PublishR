@@ -2,7 +2,7 @@
 using Microsoft.Owin.Cors;
 using Owin;
 
-namespace PunlishR.Server.Api.App_Start
+namespace PunlishR.Server.Api
 {
     public class Startup
     {

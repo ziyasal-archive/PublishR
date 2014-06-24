@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace PublishR.Test.RedisClients {
+namespace PublishR.Test.RedisClients
+{
     [TestFixture]
-    class ServiceStackRedisTest {
+    public class ServiceStackRedisTest
+    {
     }
 }

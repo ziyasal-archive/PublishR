@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace PublishR.Mvc.BCommerce.App_Start
+namespace PublishR.Mvc.BCommerce
 {
     public class FilterConfig
     {

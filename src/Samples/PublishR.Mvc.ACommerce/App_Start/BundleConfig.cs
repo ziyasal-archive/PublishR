@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace PublishR.Mvc.ACommerce.App_Start
+namespace PublishR.Mvc.ACommerce
 {
     public class BundleConfig
     {

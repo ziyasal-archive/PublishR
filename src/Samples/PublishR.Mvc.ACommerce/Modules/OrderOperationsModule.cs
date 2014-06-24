@@ -2,10 +2,13 @@
 using PublishR.Messaging;
 using PublishR.Sample.MessageLibrary;
 
-namespace PublishR.Mvc.ACommerce.Modules {
+namespace PublishR.Mvc.ACommerce.Modules
+{
     public class OrderOperationsModule : PublishrModule,
-        IHandle<OrderCreatedMessage> {
-        public void Handle(OrderCreatedMessage message) {
+        IHandle<OrderCreatedMessage>
+    {
+        public void Handle(OrderCreatedMessage message)
+        {
             CurrentHubContext.Clients.All.orderCreated(message);
         }
     }

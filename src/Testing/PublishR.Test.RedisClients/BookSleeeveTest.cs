@@ -12,17 +12,17 @@ namespace PublishR.Test.RedisClients
     [TestFixture]
     public class BookSleeeveTest
     {
-        const string Localhost = "127.0.0.1";
-        const int Million = 1000000;
+        const string LOCALHOST = "127.0.0.1";
+        const int MILLION = 1000000;
 
         [Test]
         private static void Add_1M_Item_Test()
         {
             Fixture fixture = new Fixture();
-            RedisConnection connection = RedisConnectionGateway.Current.GetConnection(Localhost);
+            RedisConnection connection = RedisConnectionGateway.Current.GetConnection(LOCALHOST);
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            for (int i = 0; i < Million; i++)
+            for (int i = 0; i < MILLION; i++)
             {
                 Price p = fixture.Create<Price>();
                 connection.Sets.Add(1, "urn:prc_z", p.ToBArray());
@@ -36,7 +36,7 @@ namespace PublishR.Test.RedisClients
 
         private static void GetItemFrom()
         {
-            RedisConnection connection = RedisConnectionGateway.Current.GetConnection(Localhost);
+            RedisConnection connection = RedisConnectionGateway.Current.GetConnection(LOCALHOST);
 
             Task<byte[][]> task = connection.Sets.GetAll(1, "urn:prc_z");
             foreach (byte[] bytes in task.Result)

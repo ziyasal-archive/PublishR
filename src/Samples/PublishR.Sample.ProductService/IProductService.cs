@@ -3,9 +3,11 @@ using PublishR.Sample.ProductService.Request;
 using PublishR.Sample.ProductService.Response;
 using PublishR.Wcf;
 
-namespace PublishR.Sample.ProductService {
+namespace PublishR.Sample.ProductService
+{
     [ServiceContract]
-    public interface IProductService : IPublishrService {
+    public interface IProductService : IPublishrService
+    {
         [OperationContract]
         ProductCreatedResponse CreateProduct(CreateProductRequest request);
 

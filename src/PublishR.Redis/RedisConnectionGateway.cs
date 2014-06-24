@@ -6,7 +6,7 @@ namespace PublishR.Redis
 {
     public sealed class RedisConnectionGateway
     {
-        private const string RedisConnectionFailed = "Redis connection failed.";
+        private const string REDIS_CONNECTION_FAILED = "Redis connection failed.";
         public static string RedisIp = "127.0.0.1";/*ConfigurationManager.AppSettings["publishr_Redis_adress"];*/
         private RedisConnection _connection;
         private static volatile RedisConnectionGateway _instance;
@@ -62,7 +62,7 @@ namespace PublishR.Redis
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception(RedisConnectionFailed, ex);
+                        throw new Exception(REDIS_CONNECTION_FAILED, ex);
                     }
                 }
 
@@ -75,7 +75,7 @@ namespace PublishR.Redis
                     }
                     catch (SocketException ex)
                     {
-                        throw new Exception(RedisConnectionFailed, ex);
+                        throw new Exception(REDIS_CONNECTION_FAILED, ex);
                     }
                 }
 

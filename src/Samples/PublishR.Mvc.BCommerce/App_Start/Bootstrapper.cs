@@ -3,7 +3,7 @@ using PublishR.Mvc.BCommerce.Modules;
 using PublishR.Mvc.BCommerce.ProductServiceReference;
 using PublishR.PubSub;
 
-namespace PublishR.Mvc.BCommerce.App_Start
+namespace PublishR.Mvc.BCommerce
 {
     public class Bootstrapper
     {

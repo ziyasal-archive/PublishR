@@ -3,7 +3,7 @@ using PublishR.PubSub;
 
 namespace PublishR.Wcf
 {
-    //ToDo Define servicce behaviors to trace messages
+    //ToDo Define service behaviors to trace messages
     public class PublishrService : IPublishrService
     {
         protected Publishr Publishr { get; private set; }

@@ -1,7 +1,9 @@
 using PublishR.Messaging;
 
-namespace PublishR.Sample.MessageLibrary {
-    public class ProductCreatedMessage : PublishrMessage {
+namespace PublishR.Sample.MessageLibrary
+{
+    public class ProductCreatedMessage : PublishrMessage
+    {
         public string Message { get; set; }
         public int ProductId { get; set; }
         public string ProductName { get; set; }

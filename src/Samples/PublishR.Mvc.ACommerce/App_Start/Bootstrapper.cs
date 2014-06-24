@@ -5,7 +5,7 @@ using PublishR.Mvc.ACommerce.Modules;
 using PublishR.Mvc.ACommerce.ProductServiceReference;
 using PublishR.PubSub;
 
-namespace PublishR.Mvc.ACommerce.App_Start
+namespace PublishR.Mvc.ACommerce
 {
     public class PublishrBootstrapper
     {
