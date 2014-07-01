@@ -7,7 +7,7 @@ namespace PublishR.Reflection
 {
     public interface IReflector
     {
-        MethodExecutionDefination GetTargetMethod(Type type, string handleType);
+        MethodExecutionDefinition GetTargetMethod(Type type, string handleType);
         List<string> GetGenericInterfaceArguments(Type handlerType);
         ConcurrentDictionary<Type, IEnumerable<string>> GetModuleAndHandles(Assembly assemblyToScan);
     }

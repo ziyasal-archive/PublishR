@@ -69,7 +69,7 @@
     <Compile Include="Helper\StringEncoder.cs" />
     <Compile Include="Hubs\PublishrHub.cs" />
     <Compile Include="Reflection\IReflector.cs" />
-    <Compile Include="Reflection\MethodExecutionDefination.cs" />
+    <Compile Include="Reflection\MethodExecutionDefinition.cs" />
     <Compile Include="Reflection\Reflector.cs" />
     <Compile Include="MessageStore\DefaultMessageStore.cs" />
     <Compile Include="MessageStore\IMessageStore.cs" />

@@ -10,9 +10,9 @@ namespace PublishR.Reflection
 {
     public class Reflector : IReflector
     {
-        public MethodExecutionDefination GetTargetMethod(Type type, string handleType)
+        public MethodExecutionDefinition GetTargetMethod(Type type, string handleType)
         {
-            var result = new MethodExecutionDefination();
+            var result = new MethodExecutionDefinition();
             result.OwnerType = type;
             MethodInfo[] methodInfos = type.GetMethods();
             foreach (MethodInfo methodInfo in methodInfos)

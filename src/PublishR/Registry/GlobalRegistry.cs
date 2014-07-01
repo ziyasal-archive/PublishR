@@ -35,7 +35,7 @@ namespace PublishR.Registry
             ModuleAndhandlesRegistry = _reflector.GetModuleAndHandles(assemblyToScan);
         }
 
-        public IEnumerable<MethodExecutionDefination> FindByMessageType(string handleType)
+        public IEnumerable<MethodExecutionDefinition> FindByMessageType(string handleType)
         {
             return (from moduleAndHandles in ModuleAndhandlesRegistry
                     where moduleAndHandles.Value.Any(item => item == handleType)

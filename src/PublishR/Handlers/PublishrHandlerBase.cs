@@ -24,10 +24,10 @@ namespace PublishR.Handlers
         {
             CurrentHubContext = GlobalHost.ConnectionManager.GetHubContext(message.HubName);
 
-            IEnumerable<MethodExecutionDefination> methodExecutionDefinations = _globalRegistry.FindByMessageType(message.HandleType);
+            IEnumerable<MethodExecutionDefinition> methodExecutionDefinations = _globalRegistry.FindByMessageType(message.HandleType);
 
 
-            foreach (MethodExecutionDefination methodExecution in methodExecutionDefinations)
+            foreach (MethodExecutionDefinition methodExecution in methodExecutionDefinations)
             {
                 if (methodExecution.Method != null)
                 {

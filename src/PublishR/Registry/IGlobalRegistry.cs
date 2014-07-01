@@ -7,6 +7,6 @@ namespace PublishR.Registry
     public interface IGlobalRegistry
     {
         void RegisterModules(Assembly assemblyToScan);
-        IEnumerable<MethodExecutionDefination> FindByMessageType(string handleType);
+        IEnumerable<MethodExecutionDefinition> FindByMessageType(string handleType);
     }
 }

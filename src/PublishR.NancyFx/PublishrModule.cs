@@ -33,7 +33,7 @@ namespace PublishR.NancyFx
         private void Handle(IPublishrMessage message)
         {
             IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<PublishrHub>();
-            MethodExecutionDefination methodExecution = _reflector.GetTargetMethod(GetType(), message.HandleType);
+            MethodExecutionDefinition methodExecution = _reflector.GetTargetMethod(GetType(), message.HandleType);
 
             if (methodExecution.Method != null)
             {
