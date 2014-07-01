@@ -16,7 +16,7 @@ namespace PublishR.Context
         internal Assembly AssemblyToScan { get; set; }
         public string EndPointDomain { get; set; }
         public List<ISubscription> Subscriptions { get; private set; }
-        public bool SendAllSubscriptionsOneCall { internal get; set; }
+        public bool SendAllSubscriptionsInOneRequest { internal get; set; }
 
         public void WithDomain(string endPointDomain)
         {
@@ -28,7 +28,7 @@ namespace PublishR.Context
             AssemblyToScan = assembly;
         }
 
-        public void Use<T>()
+        public void WithClient<T>()
         {
             EndpointClientType = typeof(T);
         }

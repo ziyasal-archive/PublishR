@@ -12,7 +12,7 @@ namespace PublishR.Mvc.BCommerce
             Publishr.Instance.Configure(ctx =>
             {
                 ctx.RegisterModules(typeof(HomeController).Assembly);
-                ctx.Use<ProductServiceClient>();
+                ctx.WithClient<ProductServiceClient>();
                 ctx.WithDomain("http://bcommerce.com/");
                 ctx.Subscriptions.Add(new Subscription(typeof(ProductOperationsModule), Defaults.PUBLISHR_HUB_NAME, "logMessage"));
             });

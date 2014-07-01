@@ -9,7 +9,7 @@ namespace PublishR.NancyFx.CCommerce.AppStart
         {
             Publishr.Instance.Configure(ctx =>
             {
-                ctx.Use<ProductServiceClient>();
+                ctx.WithClient<ProductServiceClient>();
                 ctx.WithDomain("http://ccommerce.com/");
                 ctx.Subscriptions.Add(new Subscription(typeof(ProductOperationsHandlerModule)));
             });

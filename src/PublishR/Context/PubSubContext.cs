@@ -60,11 +60,11 @@ namespace PublishR.Context
             Configuration.Subscriptions.ForEach(item => item.CallbackUrl = Configuration.EndPointDomain);
             try
             {
-                MethodInfo subscriber = Configuration.SendAllSubscriptionsOneCall
+                MethodInfo subscriber = Configuration.SendAllSubscriptionsInOneRequest
                     ? instance.GetType().GetMethod("SubscribeAll")
                     : instance.GetType().GetMethod("Subscribe");
 
-                if (Configuration.SendAllSubscriptionsOneCall)
+                if (Configuration.SendAllSubscriptionsInOneRequest)
                 {
                     subscriber.Invoke(instance, new object[] { Configuration.Subscriptions });
                 }

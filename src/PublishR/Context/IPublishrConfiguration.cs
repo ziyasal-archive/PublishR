@@ -7,8 +7,8 @@ namespace PublishR.Context
     public interface IPublishrConfiguration
     {
         List<ISubscription> Subscriptions { get; }
-        bool SendAllSubscriptionsOneCall { set; }
-        void Use<T>();
+        bool SendAllSubscriptionsInOneRequest { set; }
+        void WithClient<T>();
         void WithDomain(string endPointDomain);
         void RegisterModules(Assembly assembly);
     }

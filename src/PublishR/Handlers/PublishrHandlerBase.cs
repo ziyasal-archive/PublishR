@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Microsoft.AspNet.SignalR;
 using PublishR.Messaging;
 using PublishR.Reflection;

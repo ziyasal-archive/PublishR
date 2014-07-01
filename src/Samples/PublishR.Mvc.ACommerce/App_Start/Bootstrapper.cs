@@ -15,7 +15,7 @@ namespace PublishR.Mvc.ACommerce
             Publishr.Instance.Configure(ctx =>
             {
                 ctx.RegisterModules(typeof(HomeController).Assembly);
-                ctx.Use<ProductServiceClient>();
+                ctx.WithClient<ProductServiceClient>();
                 ctx.WithDomain("http://acommerce.com/");
                 ctx.Subscriptions.Add(new Subscription(typeof(ProductOperationsModule), Defaults.PUBLISHR_HUB_NAME, "logMessage"));
                 ctx.Subscriptions.Add(new Subscription(typeof(OrderOperationsModule), typeof(PublishrHub).GetHubName(), "logMessage"));
