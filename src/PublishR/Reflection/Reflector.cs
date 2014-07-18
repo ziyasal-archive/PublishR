@@ -12,14 +12,12 @@ namespace PublishR.Reflection
     {
         public MethodExecutionDefinition GetTargetMethod(Type type, string handleType)
         {
-            var result = new MethodExecutionDefinition();
-            result.OwnerType = type;
+            var result = new MethodExecutionDefinition { OwnerType = type };
             MethodInfo[] methodInfos = type.GetMethods();
             foreach (MethodInfo methodInfo in methodInfos)
             {
                 ParameterInfo[] parameterInfos = methodInfo.GetParameters();
-                ParameterInfo firstOrDefault =
-                    parameterInfos.FirstOrDefault(parameterInfo => parameterInfo.ParameterType.FullName == handleType);
+                ParameterInfo firstOrDefault = parameterInfos.FirstOrDefault(parameterInfo => parameterInfo.ParameterType.FullName == handleType);
 
 
                 if (firstOrDefault != null)
@@ -38,9 +36,7 @@ namespace PublishR.Reflection
             var result = new List<string>();
             if (handlerType != null)
             {
-                IEnumerable<Type> handleInterfaces =
-                    handlerType.GetInterfaces()
-                        .Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IHandle<>));
+                IEnumerable<Type> handleInterfaces = handlerType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IHandle<>));
                 foreach (Type handle in handleInterfaces)
                 {
                     Type type = handle.GenericTypeArguments.FirstOrDefault();

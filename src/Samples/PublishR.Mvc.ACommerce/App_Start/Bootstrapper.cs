@@ -14,9 +14,10 @@ namespace PublishR.Mvc.ACommerce
             /*ForDemo: Used both type extension method and string hubname*/
             Publishr.Instance.Configure(ctx =>
             {
-                ctx.RegisterModules(typeof(HomeController).Assembly);
-                ctx.WithClient<ProductServiceClient>();
-                ctx.WithDomain("http://acommerce.com/");
+                ctx.RegisterModules(typeof(HomeController).Assembly)
+                   .WithClient<ProductServiceClient>()
+                   .WithDomain("http://acommerce.com/");
+
                 ctx.Subscriptions.Add(new Subscription(typeof(ProductOperationsModule), Defaults.PUBLISHR_HUB_NAME, "logMessage"));
                 ctx.Subscriptions.Add(new Subscription(typeof(OrderOperationsModule), typeof(PublishrHub).GetHubName(), "logMessage"));
             });

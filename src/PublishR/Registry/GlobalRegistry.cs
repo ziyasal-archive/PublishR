@@ -17,7 +17,7 @@ namespace PublishR.Registry
         public GlobalRegistry(IReflector reflector)
         {
             _reflector = reflector;
-            ModuleAndhandlesRegistry = new ConcurrentDictionary<Type, IEnumerable<string>>();
+            ModuleAndHandlesRegistry = new ConcurrentDictionary<Type, IEnumerable<string>>();
         }
 
         public GlobalRegistry()
@@ -28,16 +28,16 @@ namespace PublishR.Registry
             get { return GlobalRegistryInstance.Value; }
         }
 
-        private ConcurrentDictionary<Type, IEnumerable<string>> ModuleAndhandlesRegistry { get; set; }
+        private ConcurrentDictionary<Type, IEnumerable<string>> ModuleAndHandlesRegistry { get; set; }
 
         public void RegisterModules(Assembly assemblyToScan)
         {
-            ModuleAndhandlesRegistry = _reflector.GetModuleAndHandles(assemblyToScan);
+            ModuleAndHandlesRegistry = _reflector.GetModuleAndHandles(assemblyToScan);
         }
 
         public IEnumerable<MethodExecutionDefinition> FindByMessageType(string handleType)
         {
-            return (from moduleAndHandles in ModuleAndhandlesRegistry
+            return (from moduleAndHandles in ModuleAndHandlesRegistry
                     where moduleAndHandles.Value.Any(item => item == handleType)
                     select _reflector.GetTargetMethod(moduleAndHandles.Key, handleType)
                 ).ToList();
