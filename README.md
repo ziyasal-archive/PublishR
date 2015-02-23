@@ -8,3 +8,88 @@ Also provides javascript API for quickly, easily and securely adding scalable re
 _[Sample video available on vimeo]( https://vimeo.com/63431591 "Simple PublishR demo")_
 
 **_Sample applications and documentation will be presented soon._**
+
+##Basic Setup##
+
+###Asp.NET MVC###
+
+**bootstrap**
+```csharp
+ Publishr.Instance.Configure(ctx =>
+  {
+    ctx.RegisterModules(typeof(HomeController).Assembly)
+    .WithClient<ProductServiceClient>()
+    .WithDomain("http://acommerce.com/");
+    
+    ctx.Subscriptions.Add(new Subscription(typeof(ProductOperationsModule), 
+      Defaults.PUBLISHR_HUB_NAME, "logMessage"));
+    
+    ctx.Subscriptions.Add(new Subscription(typeof(OrderOperationsModule), 
+      typeof(PublishrHub).GetHubName(), "logMessage"));
+  });
+```
+
+**handle events**
+```csharp
+ public class ProductOperationsModule : PublishrModule,
+       IHandle<ProductCreatedMessage>,
+       IHandle<ProductUpdatedMessage>,
+       IHandle<ProductDeletedMessage>
+    {
+        public void Handle(ProductCreatedMessage message)
+        {
+            //Get hub with hub name
+            IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext(message.HubName);
+            hubContext.Clients.All.productCreated(new { Message = "Product Create.", message.ProductId });
+        }
+
+        public void Handle(ProductUpdatedMessage message)
+        {
+            //Use current hub property
+            CurrentHubContext.Clients.All.productUpdated(new { Message = "Product Update.", message.ProductId });
+        }
+
+        public void Handle(ProductDeletedMessage message)
+        {
+            //Get hub with hub type
+            IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<PublishrHub>();
+            hubContext.Clients.All.productDeleted(new { Message = "Product Delete.", message.ProductId });
+        }
+    }
+```
+
+**publish events from wcf**
+```csharp
+  public ProductCreatedResponse CreateProduct(CreateProductRequest request)
+        {
+           //operations...
+           //............
+           
+            Publishr.Publish(new ProductCreatedMessage { 
+                  Message = "Product Created", 
+                  ProductId = product.Id, 
+                  ProductName = product.Name });
+
+            return new ProductCreatedResponse
+            {
+                CreatedProductId = product.Id
+            };
+        }
+```
+
+###NANCYFX###
+==========================================
+
+**bootstrap**
+```csharp
+  Publishr.Instance.Configure(ctx =>
+  {
+    ctx.WithClient<ProductServiceClient>();
+    ctx.WithDomain("http://ccommerce.com/");
+    ctx.Subscriptions.Add(new Subscription(typeof(ProductOperationsHandlerModule)));
+  });
+```
+
+**handle events**
+```csharp
+```
