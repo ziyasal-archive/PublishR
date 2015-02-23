@@ -21,9 +21,11 @@ _[Sample video available on vimeo]( https://vimeo.com/63431591 "Simple PublishR 
     .WithClient<ProductServiceClient>()
     .WithDomain("http://acommerce.com/");
     
+    //Default Name
     ctx.Subscriptions.Add(new Subscription(typeof(ProductOperationsModule), 
       Defaults.PUBLISHR_HUB_NAME, "logMessage"));
-    
+      
+    //Type
     ctx.Subscriptions.Add(new Subscription(typeof(OrderOperationsModule), 
       typeof(PublishrHub).GetHubName(), "logMessage"));
   });
@@ -38,20 +40,20 @@ _[Sample video available on vimeo]( https://vimeo.com/63431591 "Simple PublishR 
     {
         public void Handle(ProductCreatedMessage message)
         {
-            //Get hub with hub name
+            //Get hub by name
             IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext(message.HubName);
             hubContext.Clients.All.productCreated(new { Message = "Product Create.", message.ProductId });
         }
 
         public void Handle(ProductUpdatedMessage message)
         {
-            //Use current hub property
+            //Use current hub
             CurrentHubContext.Clients.All.productUpdated(new { Message = "Product Update.", message.ProductId });
         }
 
         public void Handle(ProductDeletedMessage message)
         {
-            //Get hub with hub type
+            //Get hub by type
             IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<PublishrHub>();
             hubContext.Clients.All.productDeleted(new { Message = "Product Delete.", message.ProductId });
         }
