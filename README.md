@@ -78,7 +78,6 @@ _[Sample video available on vimeo]( https://vimeo.com/63431591 "Simple PublishR 
 ```
 
 ###NANCYFX###
-==========================================
 
 **bootstrap**
 ```csharp
@@ -92,4 +91,21 @@ _[Sample video available on vimeo]( https://vimeo.com/63431591 "Simple PublishR 
 
 **handle events**
 ```csharp
+  public class ProductOperationsHandlerModule : 
+      PublishrModule,
+      IHandle<ProductCreatedMessage>,
+      IHandle<ProductDeletedMessage>
+    {
+        public void Handle(ProductCreatedMessage message)
+        {
+            IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext(message.HubName);
+            hubContext.Clients.All.productCreated(new { msg = string.Format("Product created id:{0}", message.ProductId) });
+        }
+
+        public void Handle(ProductDeletedMessage message)
+        {
+            IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext(message.HubName);
+            hubContext.Clients.All.productDeleted(new { msg = string.Format("Product Deleted id:{0}", message.ProductId) });
+        }
+    }
 ```
